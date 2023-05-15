@@ -1,30 +1,36 @@
 name: github-actions-demo
+
 on:
-    push:
-        branches:
-        - main
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
 jobs:
-    wersja_pythona:
-    runs-on: windows-latest
+  display_python_version:
+    runs-on: ubuntu-latest
+    name: Display Python Version
     steps:
-      - name: Wyswietlanie wersji pythona
+      - name: Display Python Version
         run: python --version
-    testuj_przez_pylint:
-        runs-on: windows-latest
-        steps:
-          - name: sprawdz_kod
-            uses: actions/checkout@v2
 
-          - name: Ustaw_python
-            uses: actions/setup-python@v2
-            with:
-              python-version: 3.x
+  test:
+    runs-on: ubuntu-latest
+    name: Run Pylint
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-          - name: Zainstaluj
-            run: |
-              python -m pip install --upgrade pip
-              pip install -r requirements.txt
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
 
-          - name: Uruchom_Pylint
-            run: |
-              pylint app.py
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Pylint
+        run: |
+          pylint app.py
