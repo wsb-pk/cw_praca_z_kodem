@@ -10,21 +10,21 @@ jobs:
       - name: Wyswietlanie wersji pythona
         run: python --version
     testuj_przez_pylint:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
-      - name: Checkout code
+      - name: sprawdz_kod
         uses: actions/checkout@v2
 
-      - name: Setup Python
+      - name: Ustaw_python
         uses: actions/setup-python@v2
         with:
           python-version: 3.x
 
-      - name: Install dependencies
+      - name: Zainstaluj
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run Pylint
+      - name: Uruchom_Pylint
         run: |
           pylint app.py
