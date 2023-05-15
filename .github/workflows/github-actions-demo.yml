@@ -34,3 +34,5 @@ jobs:
       - name: Run Pylint
         run: |
           pylint app.py
+        with:
+          python-version: 3.9
