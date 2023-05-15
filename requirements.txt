@@ -1,2 +1,2 @@
-flask
-pylint
+Flask==2.0.0
+pylint==2.9.6
