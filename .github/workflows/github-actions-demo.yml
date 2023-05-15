@@ -1,8 +1,3 @@
-name: Cwiczenia1
-    on:
-      push:
-        branches:
-          - main
 jobs:
     runs-on: Windows 10
     steps:
