@@ -1,9 +1,22 @@
-language: python
-python: "3.9"
-services: docker
-install:
-- pip install -r requirements.txt
-script:
-- echo ‘start docker build’
-- docker build -t flask-app .
-- echo ‘finish docker build’
+name: travis
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  testuj_flask:
+    runs-on: ubuntu-latest
+    name: Wersja pythona
+    steps:
+        language: python
+	python: "3.9"
+	services: docker
+	install:
+	-pip install -r requirements.txt
+	script:
+	- echo ‘start docker build’
+	- docker build -t flask-app .
+	- echo ‘finish docker build’
